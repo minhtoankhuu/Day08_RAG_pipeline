@@ -1,2 +1,15 @@
 .venv
 .env
+
+# Python compilation cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Testing & Evaluation cache
+.pytest_cache/
+.deepeval/
+
+# Log files
+*.log
