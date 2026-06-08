@@ -171,8 +171,63 @@ run_dashboard()
 ## Kiến Trúc Hệ Thống
 
 ```
-[Vẽ diagram kiến trúc ở đây]
+                               +---------------------------+
+                               |      Streamlit UI         |
+                               |     (Conversation)        |
+                               +-------------+-------------+
+                                             |
+                                             | Gửi truy vấn & Lịch sử chat
+                                             v
+                               +---------------------------+
+                               |    GroupRAGPipeline       |
+                               |    (RAG Controller)       |
+                               +-------------+-------------+
+                                             |
+                    +------------------------+------------------------+
+                    | (BM25 Search)                                   | (Semantic Search)
+                    v                                                 v
+       +---------------------------+                     +---------------------------+
+       |     BM25 Lexical Index    |                     |     Weaviate Vector DB    |
+       |  (Tài liệu pháp lý/tin)   |                     |  (BAAI/bge-m3 embeddings) |
+       +-------------+-------------+                     +-------------+-------------+
+                     |                                                 |
+                     +------------------------+------------------------+
+                                              |
+                                              v Reciprocal Rank Fusion (RRF)
+                               +---------------------------+
+                               |      Merged Candidates    |
+                               +-------------+-------------+
+                                             |
+                                             v Cross-Encoder Rerank
+                               +---------------------------+
+                               |  ms-marco-MiniLM-L-6-v2   |
+                               +-------------+-------------+
+                                             |
+                                             v Kiểm tra Threshold (Score < 0.3?)
+                                             |
+                    +------------------------+------------------------+
+                    | Không                                           | Có (Điểm quá thấp)
+                    v                                                 v
+       +---------------------------+                     +---------------------------+
+       |   Reorder context chunks  |                     |  PageIndex Cloud Search   |
+       |  (Lost-in-the-Middle check|                     |     (Vectorless RAG)      |
+       +-------------+-------------+                     +-------------+-------------+
+                     |                                                 |
+                     +------------------------+------------------------+
+                                              |
+                                              v Context gán nhãn [Document i]
+                               +---------------------------+
+                               |  Prompt / LLM Generator   |
+                               | (GPT-4o-mini/Gemini-1.5)  |
+                               +---------------------------+
 ```
+
+Hệ thống của nhóm sử dụng kiến trúc **Hybrid Search (Dense + Sparse)** kết hợp các thành phần tối ưu chất lượng retrieval và sinh câu trả lời:
+- **Dense Semantic Retrieval:** Dùng model `BAAI/bge-m3` để tìm kiếm theo ngữ nghĩa (có local cosine similarity fallback khi chạy offline).
+- **Sparse Lexical Retrieval:** Dùng thuật toán `BM25Okapi` bắt chính xác các từ khóa số hiệu điều luật.
+- **Reranker:** Tái xếp hạng các ứng viên thông qua mô hình Cross-Encoder `ms-marco-MiniLM-L-6-v2`.
+- **Fallback PageIndex:** Kích hoạt PageIndex Vectorless Search nếu điểm số của Reranker dưới ngưỡng `0.3`.
+- **Reordering & Generation:** Sắp xếp lại chunks chống lost-in-the-middle trước khi đưa vào LLM (GPT-4o-mini / Gemini-1.5) kèm Prompt yêu cầu trích dẫn có căn cứ.
 
 ---
 
@@ -180,10 +235,10 @@ run_dashboard()
 
 | Thành viên | MSSV | Nhiệm vụ | Trạng thái |
 |-----------|------|----------|------------|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Khưu Minh Toàn | 2A202601011 | Tích hợp hệ thống, quản lý DB Weaviate, xây dựng `rag_pipeline.py` | Hoàn thành |
+| Nguyễn Bùi Tấn Dũng | 2A202600546 | Phát triển UI Streamlit, Conversation Memory, Citations & Source Expander (`app.py`) | Hoàn thành |
+| Doãn Xuân Thạch | 2A202600950 | Biên soạn Golden Dataset (15+ Q&A), thiết lập khung metrics đánh giá | Hoàn thành |
+| Phan Tấn Hưng | 2A202600825 | Phát triển `eval_pipeline.py` chạy so sánh A/B & kết xuất báo cáo `results.md` | Hoàn thành |
 
 ---
 
@@ -193,10 +248,20 @@ run_dashboard()
 # Cài đặt dependencies
 pip install -r requirements.txt
 
-# Chạy app
-streamlit run app.py
-# hoặc
-chainlit run app.py
+# 1. Thu thập dữ liệu thô từ các thành viên
+python group_project/src/prepare_data.py
+
+# 2. Chuẩn hóa dữ liệu & Embedding & Indexing nạp DB Weaviate / Cache local
+python group_project/src/database_setup.py
+
+# 3. Chạy kiểm tra nhanh Pipeline qua terminal
+python group_project/src/verify_pipeline.py
+
+# 4. Khởi chạy giao diện Streamlit Chatbot
+streamlit run group_project/app.py
+
+# 5. Khởi chạy Evaluation Pipeline và xuất báo cáo results.md
+python group_project/evaluation/eval_pipeline.py
 ```
 
 ---

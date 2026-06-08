@@ -7,26 +7,37 @@ import streamlit as st
 
 
 current_dir = Path(__file__).parent.resolve()
-src_dir = current_dir / "src"
-if str(src_dir) not in sys.path:
-    sys.path.insert(0, str(src_dir))
+parent_dir = current_dir.parent
+if str(parent_dir) not in sys.path:
+    sys.path.insert(0, str(parent_dir))
 if str(current_dir) not in sys.path:
     sys.path.insert(0, str(current_dir))
 
 
 real_backend_available = False
 DEFAULT_TOP_K = 5
+rag_pipeline_instance = None
+
 try:
-    from src.task10_generation import generate_with_citation  # type: ignore
-
-    real_backend_available = True
-except ImportError:
+    from group_project.src.rag_pipeline import GroupRAGPipeline  # type: ignore
+    
+    @st.cache_resource
+    def load_group_rag_pipeline():
+        return GroupRAGPipeline()
+        
+    rag_pipeline_instance = load_group_rag_pipeline()
+    real_backend_available = rag_pipeline_instance is not None
+except Exception as e:
+    st.sidebar.error(f"Lỗi khởi tạo GroupRAGPipeline: {e}")
     try:
-        from task10_generation import generate_with_citation  # type: ignore
-
+        from src.task10_generation import generate_with_citation  # type: ignore
         real_backend_available = True
     except ImportError:
-        generate_with_citation = None  # type: ignore
+        try:
+            from task10_generation import generate_with_citation  # type: ignore
+            real_backend_available = True
+        except ImportError:
+            generate_with_citation = None  # type: ignore
 
 
 class MockRAGEngine:
@@ -139,16 +150,22 @@ def get_conversation_history(limit: int = 8) -> list[dict[str, str]]:
 
 def call_rag_backend(query: str) -> dict[str, Any]:
     history = get_conversation_history()
-    if real_backend_available and generate_with_citation is not None:
-        try:
-            return generate_with_citation(query, top_k=DEFAULT_TOP_K, conversation_history=history)  # type: ignore[misc]
-        except TypeError:
+    if real_backend_available:
+        if rag_pipeline_instance is not None:
             try:
-                return generate_with_citation(query, top_k=DEFAULT_TOP_K)  # type: ignore[misc]
+                return rag_pipeline_instance.generate(query, conversation_history=history)
+            except Exception as e:
+                st.sidebar.warning(f"Lỗi khi chạy GroupRAGPipeline: {e}")
+        elif generate_with_citation is not None:
+            try:
+                return generate_with_citation(query, top_k=DEFAULT_TOP_K, conversation_history=history)  # type: ignore[misc]
+            except TypeError:
+                try:
+                    return generate_with_citation(query, top_k=DEFAULT_TOP_K)  # type: ignore[misc]
+                except NotImplementedError:
+                    pass
             except NotImplementedError:
                 pass
-        except NotImplementedError:
-            pass
     return MockRAGEngine.generate(query, conversation_history=history)
 
 
