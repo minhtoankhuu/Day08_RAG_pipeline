@@ -197,8 +197,12 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-chat_is_open = st.query_params.get("chat", "closed") == "open"
 ensure_chat_state()
+if "chat_is_open" not in st.session_state:
+    st.session_state.chat_is_open = False
+if st.query_params.get("chat") == "open":
+    st.session_state.chat_is_open = True
+chat_is_open = st.session_state.chat_is_open
 
 st.markdown(
     """
@@ -206,13 +210,15 @@ st.markdown(
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --brand: #087a4b;
-    --brand-dark: #075f3c;
-    --accent: #edb526;
-    --ink: #173b2d;
-    --muted: #607466;
-    --line: #dce8df;
-    --soft: #f3f8f4;
+    --brand: #0f8b8d;
+    --brand-dark: #0b5f73;
+    --accent: #f5b041;
+    --accent-soft: #ffe8d6;
+    --ink: #183642;
+    --muted: #5f7480;
+    --line: #d9e7ea;
+    --soft: #f0f8f9;
+    --surface: #ffffff;
 }
 
 html, body, [class*="css"] {
@@ -220,7 +226,7 @@ html, body, [class*="css"] {
 }
 
 .stApp {
-    background: #ffffff;
+    background: linear-gradient(180deg, #f7fbfc 0%, #ffffff 34%, #f6faf8 100%);
 }
 
 .block-container {
@@ -239,8 +245,8 @@ header[data-testid="stHeader"] {
 
 .top-strip {
     margin: 0 calc(50% - 50vw);
-    padding: 8px calc(50vw - 50%);
-    background: var(--brand-dark);
+    padding: 8px 36px;
+    background: #0b5f73;
     color: white;
     font-size: 13px;
 }
@@ -253,6 +259,7 @@ header[data-testid="stHeader"] {
 }
 
 .top-strip-inner {
+    max-width: none;
     display: flex;
     justify-content: space-between;
     gap: 16px;
@@ -261,7 +268,7 @@ header[data-testid="stHeader"] {
 
 .consult-pill {
     background: var(--accent);
-    color: #263214;
+    color: #1e3440;
     padding: 6px 12px;
     border-radius: 999px;
     font-weight: 700;
@@ -269,16 +276,18 @@ header[data-testid="stHeader"] {
 
 .main-nav {
     margin: 0 calc(50% - 50vw);
-    padding: 16px calc(50vw - 50%);
-    background: white;
+    padding: 16px 36px;
+    background: rgba(255,255,255,0.96);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 8px 24px rgba(7, 95, 60, 0.08);
+    box-shadow: 0 8px 24px rgba(11, 95, 115, 0.08);
     position: sticky;
     top: 0;
     z-index: 50;
 }
 
 .nav-inner {
+    max-width: none;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 22px;
@@ -289,7 +298,8 @@ header[data-testid="stHeader"] {
     display: flex;
     align-items: center;
     gap: 12px;
-    min-width: 260px;
+    min-width: 520px;
+    flex: 0 0 auto;
 }
 
 .brand-mark {
@@ -298,10 +308,10 @@ header[data-testid="stHeader"] {
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: linear-gradient(145deg, var(--brand), #11a86b);
+    background: linear-gradient(145deg, var(--brand), #2f80ed);
     color: white;
     font-weight: 800;
-    border: 4px solid #e8f5ec;
+    border: 4px solid #e5f5f6;
 }
 
 .brand-title {
@@ -310,6 +320,7 @@ header[data-testid="stHeader"] {
     color: var(--brand-dark);
     font-weight: 800;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .brand-subtitle {
@@ -322,6 +333,7 @@ header[data-testid="stHeader"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    margin-left: auto;
     gap: 8px 18px;
     color: var(--brand-dark);
     font-size: 13px;
@@ -334,7 +346,7 @@ header[data-testid="stHeader"] {
     min-height: 520px;
     color: white;
     background:
-        linear-gradient(90deg, rgba(5, 74, 46, 0.94), rgba(8, 122, 75, 0.68), rgba(8, 122, 75, 0.16)),
+        linear-gradient(90deg, rgba(11, 95, 115, 0.93), rgba(15, 139, 141, 0.62), rgba(245, 176, 65, 0.16)),
         url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=80");
     background-size: cover;
     background-position: center;
@@ -394,12 +406,37 @@ header[data-testid="stHeader"] {
 
 .primary-link {
     background: var(--accent);
-    color: #263214 !important;
+    color: #1e3440 !important;
 }
 
 .secondary-link {
     border: 1px solid rgba(255,255,255,0.46);
     color: white !important;
+}
+
+.st-key-hero_chat_action {
+    max-width: 1180px;
+    margin: -142px auto 86px;
+    padding-left: 158px;
+    position: relative;
+    z-index: 5;
+}
+
+.st-key-hero_chat_action button {
+    min-width: 136px;
+    height: 53px;
+    border-radius: 4px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #1e3440;
+    font-weight: 800;
+    box-shadow: 0 10px 22px rgba(24, 54, 66, 0.16);
+}
+
+.st-key-hero_chat_action button:hover {
+    border-color: #ffc766;
+    background: #ffc766;
+    color: #1e3440;
 }
 
 .section-title {
@@ -448,7 +485,7 @@ header[data-testid="stHeader"] {
 }
 
 .stat {
-    background: white;
+    background: var(--surface);
     border: 1px solid var(--line);
     padding: 18px;
 }
@@ -471,9 +508,32 @@ header[data-testid="stHeader"] {
 .news-card,
 .value-card {
     border: 1px solid var(--line);
-    background: white;
-    padding: 22px;
+    background: var(--surface);
     min-height: 170px;
+    overflow: hidden;
+    box-shadow: 0 12px 26px rgba(24, 54, 66, 0.06);
+}
+
+.service-card,
+.news-card {
+    padding: 0;
+}
+
+.value-card {
+    padding: 22px;
+}
+
+.card-body {
+    padding: 20px 22px 22px;
+}
+
+.card-image {
+    width: 100%;
+    height: 128px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--line);
+    filter: saturate(1.04);
 }
 
 .service-card {
@@ -481,7 +541,7 @@ header[data-testid="stHeader"] {
 }
 
 .news-card {
-    border-top: 4px solid var(--accent);
+    border-top: 4px solid #ff7f50;
 }
 
 .card-label {
@@ -501,24 +561,24 @@ header[data-testid="stHeader"] {
 
 .chat-launcher {
     position: fixed;
-    right: 28px;
-    bottom: 28px;
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
+    right: 24px;
+    bottom: 24px;
+    width: 118px;
+    height: 42px;
+    border-radius: 999px;
     z-index: 9999;
     display: grid;
     place-items: center;
-    background: linear-gradient(145deg, var(--brand), #0fa66c);
-    color: white !important;
-    text-decoration: none !important;
-    box-shadow: 0 18px 38px rgba(8, 122, 75, 0.32);
-    border: 5px solid white;
-    font-weight: 900;
-    font-size: 18px;
+    background: linear-gradient(145deg, var(--brand), #2f80ed);
+    color: white;
+    box-shadow: 0 18px 38px rgba(15, 139, 141, 0.28);
+    border: 3px solid white;
+    font-weight: 800;
+    font-size: 14px;
 }
 
 .chat-launcher::after {
+    display: none;
     content: "Hỏi AI";
     position: absolute;
     right: 76px;
@@ -529,6 +589,31 @@ header[data-testid="stHeader"] {
     border-radius: 4px;
     font-size: 13px;
     font-weight: 700;
+}
+
+.st-key-chat_launcher_box {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+}
+
+.st-key-chat_launcher_box button {
+    width: 118px;
+    height: 42px;
+    border-radius: 999px;
+    border: 3px solid white;
+    background: linear-gradient(145deg, var(--brand), #2f80ed);
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0 18px 38px rgba(15, 139, 141, 0.28);
+}
+
+.st-key-chat_launcher_box button:hover {
+    border-color: white;
+    color: white;
+    background: linear-gradient(145deg, var(--brand-dark), #256bc6);
 }
 
 .chat-panel {
@@ -542,23 +627,23 @@ header[data-testid="stHeader"] {
 .st-key-chat_drawer {
     position: fixed;
     right: 24px;
-    bottom: 24px;
+    bottom: 86px;
     width: min(420px, calc(100vw - 32px));
-    max-height: calc(100vh - 48px);
+    max-height: calc(100vh - 112px);
     overflow-y: auto;
     z-index: 10000;
     border: 1px solid var(--line);
     border-top: 5px solid var(--brand);
     border-radius: 8px;
-    background: white;
+    background: #ffffff;
     padding: 18px;
-    box-shadow: 0 24px 70px rgba(23, 59, 45, 0.26);
+    box-shadow: 0 24px 70px rgba(24, 54, 66, 0.2);
 }
 
 .st-key-chat_history {
-    border: 1px solid #edf3ee;
+    border: 1px solid #d9e7ea;
     border-radius: 8px;
-    background: #fbfdfb;
+    background: #f0f8f9;
     padding: 8px;
 }
 
@@ -587,15 +672,54 @@ header[data-testid="stHeader"] {
 }
 
 [data-testid="stChatMessage"] {
-    border: 1px solid #edf3ee;
+    border: 1px solid #d9e7ea;
     border-radius: 8px;
-    background: #fbfdfb;
+    background: #ffffff;
+    color: var(--ink);
+    box-shadow: 0 6px 18px rgba(24, 54, 66, 0.07);
+}
+
+.st-key-chat_history [data-testid="stChatMessage"] * {
+    color: var(--ink) !important;
+}
+
+.st-key-chat_history [data-testid="stChatMessage"] p {
+    line-height: 1.55;
 }
 
 .stButton button {
     border-radius: 4px;
     border: 1px solid var(--brand);
     color: var(--brand);
+    background: #ffffff;
+}
+
+.st-key-back_to_home button {
+    background: var(--accent-soft);
+    color: #a14b22;
+    border-color: #ffbf9f;
+    font-weight: 800;
+}
+
+.st-key-back_to_home button:hover {
+    background: #ffd8c2;
+    color: #7d3515;
+    border-color: #ffad85;
+}
+
+@media (max-width: 1200px) {
+    .brand-lockup {
+        min-width: 420px;
+    }
+
+    .brand-title {
+        font-size: 13px;
+    }
+
+    .nav-links {
+        gap: 8px 12px;
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 860px) {
@@ -610,6 +734,20 @@ header[data-testid="stHeader"] {
     .about-band {
         grid-template-columns: 1fr;
         display: grid;
+    }
+
+    .top-strip,
+    .main-nav {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .brand-lockup {
+        min-width: 0;
+    }
+
+    .brand-title {
+        white-space: normal;
     }
 
     .nav-links {
@@ -631,11 +769,31 @@ header[data-testid="stHeader"] {
         grid-template-columns: 1fr;
     }
 
+    .st-key-hero_chat_action {
+        margin: -118px 18px 72px;
+        padding-left: 154px;
+    }
+
+    .st-key-hero_chat_action button {
+        width: 136px;
+        height: 50px;
+    }
+
     .chat-launcher {
-        right: 18px;
-        bottom: 18px;
-        width: 62px;
-        height: 62px;
+        right: 14px;
+        bottom: 14px;
+        width: 98px;
+        height: 38px;
+    }
+
+    .st-key-chat_launcher_box {
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .st-key-chat_launcher_box button {
+        width: 98px;
+        height: 38px;
     }
 
     .chat-launcher::after {
@@ -644,9 +802,9 @@ header[data-testid="stHeader"] {
 
     .st-key-chat_drawer {
         right: 12px;
-        bottom: 12px;
+        bottom: 64px;
         width: calc(100vw - 24px);
-        max-height: calc(100vh - 24px);
+        max-height: calc(100vh - 82px);
     }
 }
 </style>
@@ -693,7 +851,6 @@ st.markdown(
       để người dùng đặt câu hỏi và nhận câu trả lời có trích dẫn nguồn.
     </p>
     <div class="hero-actions">
-      <a class="primary-link" href="?chat=open#rag-chatbot">Hỏi trợ lý AI</a>
       <a class="secondary-link" href="#tin-noi-bat">Xem tin nổi bật</a>
     </div>
   </div>
@@ -701,6 +858,11 @@ st.markdown(
 """,
     unsafe_allow_html=True,
 )
+
+with st.container(key="hero_chat_action"):
+    if st.button("Hỏi trợ lý AI", key="open_chat_hero"):
+        st.session_state.chat_is_open = True
+        st.rerun()
 
 st.markdown(
     """
@@ -736,19 +898,28 @@ st.markdown(
 
 <div class="service-grid">
   <div class="service-card">
-    <div class="card-label">Tra cứu</div>
-    <h3>Văn bản pháp luật</h3>
-    <p>Hỏi đáp về Luật Phòng, chống ma túy, Bộ luật Hình sự và các quy định liên quan.</p>
+    <img class="card-image" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80" alt="Tài liệu pháp luật">
+    <div class="card-body">
+      <div class="card-label">Tra cứu</div>
+      <h3>Văn bản pháp luật</h3>
+      <p>Hỏi đáp về Luật Phòng, chống ma túy, Bộ luật Hình sự và các quy định liên quan.</p>
+    </div>
   </div>
   <div class="service-card">
-    <div class="card-label">Tin tức</div>
-    <h3>Nguồn báo chí</h3>
-    <p>Tìm các tin trong kho dữ liệu và hiển thị nguồn để người dùng tự kiểm chứng.</p>
+    <img class="card-image" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=900&q=80" alt="Nguồn báo chí">
+    <div class="card-body">
+      <div class="card-label">Tin tức</div>
+      <h3>Nguồn báo chí</h3>
+      <p>Tìm các tin trong kho dữ liệu và hiển thị nguồn để người dùng tự kiểm chứng.</p>
+    </div>
   </div>
   <div class="service-card">
-    <div class="card-label">Tư vấn</div>
-    <h3>Hỏi đáp tiếp nối</h3>
-    <p>Lưu lịch sử hội thoại để hỗ trợ follow-up questions trong phiên làm việc.</p>
+    <img class="card-image" src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80" alt="Tư vấn hỗ trợ">
+    <div class="card-body">
+      <div class="card-label">Tư vấn</div>
+      <h3>Hỏi đáp tiếp nối</h3>
+      <p>Lưu lịch sử hội thoại để hỗ trợ follow-up questions trong phiên làm việc.</p>
+    </div>
   </div>
 </div>
 
@@ -761,19 +932,28 @@ st.markdown(
 
 <div class="news-grid">
   <div class="news-card">
-    <div class="card-label">Phòng ngừa</div>
-    <h3>Nhận diện ma túy núp bóng</h3>
-    <p>Các dạng chất cấm mới thường được ngụy trang tinh vi, cần kết hợp truyền thông và giáo dục cộng đồng.</p>
+    <img class="card-image" src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=900&q=80" alt="Phòng ngừa sức khỏe cộng đồng">
+    <div class="card-body">
+      <div class="card-label">Phòng ngừa</div>
+      <h3>Nhận diện ma túy núp bóng</h3>
+      <p>Các dạng chất cấm mới thường được ngụy trang tinh vi, cần kết hợp truyền thông và giáo dục cộng đồng.</p>
+    </div>
   </div>
   <div class="news-card">
-    <div class="card-label">Cai nghiện</div>
-    <h3>Phục hồi là một hành trình</h3>
-    <p>Cai nghiện không chỉ là cắt cơn mà còn cần hỗ trợ tâm lý, gia đình và tái hòa nhập xã hội.</p>
+    <img class="card-image" src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80" alt="Hỗ trợ phục hồi cộng đồng">
+    <div class="card-body">
+      <div class="card-label">Cai nghiện</div>
+      <h3>Phục hồi là một hành trình</h3>
+      <p>Cai nghiện không chỉ là cắt cơn mà còn cần hỗ trợ tâm lý, gia đình và tái hòa nhập xã hội.</p>
+    </div>
   </div>
   <div class="news-card">
-    <div class="card-label">Pháp luật</div>
-    <h3>Tra cứu quy định xử lý</h3>
-    <p>Chatbot có thể hỗ trợ tìm nhanh điều khoản, mức phạt và nguồn tài liệu liên quan.</p>
+    <img class="card-image" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80" alt="Tra cứu quy định pháp luật">
+    <div class="card-body">
+      <div class="card-label">Pháp luật</div>
+      <h3>Tra cứu quy định xử lý</h3>
+      <p>Chatbot có thể hỗ trợ tìm nhanh điều khoản, mức phạt và nguồn tài liệu liên quan.</p>
+    </div>
   </div>
 </div>
 
@@ -811,11 +991,15 @@ if chat_is_open:
     <h2>Trợ lý hỏi đáp phòng chống ma túy</h2>
     <div class="source-note">Trả lời kèm citation và tài liệu nguồn.</div>
   </div>
-  <a class="chat-close" href="?chat=closed">Đóng</a>
 </div>
 """,
             unsafe_allow_html=True,
         )
+
+        if st.button("Quay lại", use_container_width=False, key="back_to_home"):
+            st.session_state.chat_is_open = False
+            st.query_params.clear()
+            st.rerun()
 
         if st.button("Xóa lịch sử", use_container_width=False, key="clear_chat"):
             st.session_state.messages = []
@@ -851,13 +1035,16 @@ if chat_is_open:
             )
             st.rerun()
 else:
-    st.markdown('<a class="chat-launcher" href="?chat=open#rag-chatbot" title="Mở chatbot">AI</a>', unsafe_allow_html=True)
+    with st.container(key="chat_launcher_box"):
+        if st.button("Hỏi AI", key="open_chat"):
+            st.session_state.chat_is_open = True
+            st.rerun()
     st.markdown(
         """
 <div class="section-title" id="rag-chatbot">
   <div>
     <span>Chatbot</span>
-    <h2>Bấm logo AI ở góc phải để mở trợ lý hỏi đáp</h2>
+    <h2>Bấm nút Hỏi AI ở góc phải trên để mở trợ lý hỏi đáp</h2>
   </div>
 </div>
 """,
