@@ -1,0 +1,11 @@
+**Title:** Khởi tố người mẫu Andrea Aybar, ca sĩ Chi Dân và Trúc Phương
+**Source:** https://vnexpress.net/khoi-to-nguoi-mau-andrea-aybar-ca-si-chi-dan-4816041.html
+**Crawled:** 2026-06-08T12:25:49.780174
+
+---
+
+Cơ quan Cảnh sát điều tra Công an TP.HCM đã ra quyết định khởi tố bị can, lệnh bắt tạm giam đối với ca sĩ Chi Dân (tên thật là Nguyễn Trung Hiếu), người mẫu Andrea Aybar (tên tiếng Việt là An Tây, quốc tịch Tây Ban Nha) và Nguyễn Đỗ Trúc Phương (được biết đến với biệt danh "cô tiên từ thiện") về tội "Tổ chức sử dụng trái phép chất ma túy". Ngoài ra, người mẫu Andrea Aybar còn bị khởi tố thêm về tội "Tàng trữ trái phép chất ma túy".
+
+Quyết định khởi tố nằm trong tiến trình mở rộng điều tra chuyên án VN10 liên quan đến đường dây vận chuyển ma túy từ Pháp về Việt Nam qua đường hàng không. Cơ quan công an xác định ca sĩ Chi Dân cùng nhóm bạn đã mua ma túy loại Ketamine và MDMA để tổ chức sử dụng tại một địa điểm ở quận Tân Bình.
+
+Người mẫu Andrea Aybar bị bắt giữ tại một căn hộ chung cư ở thành phố Thủ Đức, nơi công an phát hiện cô đang tàng trữ và tổ chức sử dụng thuốc lắc cùng một số lượng nhỏ ma túy đá. Kết quả xét nghiệm nhanh cho thấy cả ba người nổi tiếng này đều dương tính với chất ma túy. Vụ việc gây xôn xao dư luận bởi họ đều là những người có sức ảnh hưởng lớn trong giới trẻ và cộng đồng.
