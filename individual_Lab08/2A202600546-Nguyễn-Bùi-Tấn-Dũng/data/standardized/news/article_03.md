@@ -1,0 +1,14 @@
+# Người mẫu An Tây (Andrea Aybar) bị khởi tố, tạm giam vì liên quan đến ma túy
+
+**Source:** https://vnexpress.net/nguoi-mau-an-tay-bi-khoi-to-4815917.html
+**Crawled:** 2026-06-08T14:35:36.377227
+
+---
+
+# Người mẫu An Tây (Andrea Aybar) bị khởi tố, tạm giam vì liên quan đến ma túy
+
+Ngày 14/11/2024, Công an TP.HCM đã ra quyết định khởi tố bị can, bắt tạm giam đối với Andrea Aybar Carmona (29 tuổi, quốc tịch Tây Ban Nha, nghệ danh là người mẫu An Tây) về hai tội danh: "Tàng trữ trái phép chất ma túy" và "Tổ chức sử dụng trái phép chất ma túy".
+
+Trước đó, vào chiều 9/11/2024, Công an TP Thủ Đức phối hợp cùng các đơn vị nghiệp vụ kiểm tra hành chính một căn hộ chung cư cao cấp trên địa bàn và phát hiện người mẫu An Tây cùng một số bạn bè tụ tập sử dụng chất ma túy trái phép. Tại hiện trường, lực lượng chức năng thu giữ một lượng nhỏ ma túy cùng các dụng cụ dùng để sử dụng chất cấm. Kết quả test nhanh cho thấy An Tây dương tính với chất ma túy.
+
+Trong video tự thú do cơ quan công an công bố, người mẫu An Tây đã khóc và bày tỏ sự hối hận muộn màng. Cô chia sẻ bản thân đã nhận thức được tác hại ghê gớm của ma túy nhưng do sự lôi kéo và bản lĩnh kém cỏi nên đã lún sâu vào con đường này. Sự việc này là cú sốc lớn đối với sự nghiệp người mẫu của cô tại Việt Nam.
