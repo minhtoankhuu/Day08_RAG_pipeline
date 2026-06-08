@@ -1,0 +1,77 @@
+[
+  {
+    "question": "Hình phạt cho tội tàng trữ trái phép chất ma tuý theo Điều 249 Bộ luật Hình sự?",
+    "expected_answer": "Phạt tù từ 1 đến 5 năm đối với trường hợp tàng trữ từ 1g đến dưới 5g heroin hoặc cocaine, hoặc chất ma tuý khác với khối lượng tương đương.",
+    "expected_context": "Bộ luật Hình sự 2015, Điều 249"
+  },
+  {
+    "question": "Luật Phòng chống ma tuý 2021 quy định những hình thức cai nghiện nào?",
+    "expected_answer": "Cai nghiện tự nguyện tại gia đình, cai nghiện tự nguyện tại cộng đồng, cai nghiện tự nguyện tại cơ sở cai nghiện, và cai nghiện bắt buộc tại cơ sở cai nghiện.",
+    "expected_context": "Luật Phòng chống ma tuý 2021, Chương V"
+  },
+  {
+    "question": "Danh mục các chất ma tuý thuộc nhóm I theo quy định pháp luật Việt Nam gồm những chất nào?",
+    "expected_answer": "Nhóm I gồm các chất ma tuý tuyệt đối cấm sử dụng trong y học và đời sống, bao gồm heroin, cocaine, methamphetamine, MDMA (ecstasy), cannabis (cần sa), và các chất tương tự.",
+    "expected_context": "Nghị định 57/2022/NĐ-CP hoặc Nghị định 28/2026/NĐ-CP, Danh mục I"
+  },
+  {
+    "question": "Hình phạt cao nhất cho tội vận chuyển trái phép chất ma túy là gì?",
+    "expected_answer": "Hình phạt cao nhất cho tội vận chuyển trái phép chất ma túy là tù chung thân hoặc tử hình nếu khối lượng Heroine từ 100 gam trở lên, hoặc ma túy đá (Methamphetamine) từ 100 gam trở lên.",
+    "expected_context": "Bộ luật Hình sự 2015, Điều 250"
+  },
+  {
+    "question": "Ca sĩ Chi Dân bị truy tố về tội danh gì?",
+    "expected_answer": "Ca sĩ Chi Dân (tên thật là Nguyễn Trung Hiếu) bị truy tố về tội 'Tổ chức sử dụng trái phép chất ma túy'.",
+    "expected_context": "Báo chí về Chi Dân và ma túy"
+  },
+  {
+    "question": "Người mẫu Andrea Aybar bị khởi tố về những tội danh nào?",
+    "expected_answer": "Người mẫu Andrea Aybar (An Tây) bị khởi tố về hai tội danh: 'Tổ chức sử dụng trái phép chất ma túy' và 'Tàng trữ trái phép chất ma túy'.",
+    "expected_context": "Báo chí về Andrea Aybar và ma túy"
+  },
+  {
+    "question": "Diễn viên hài Hữu Tín bị tuyên án bao nhiêu năm tù?",
+    "expected_answer": "Diễn viên Trần Hữu Tín bị tuyên án phạt 7 năm 6 tháng tù về tội 'Tổ chức sử dụng trái phép chất ma túy'.",
+    "expected_context": "Báo chí về Hữu Tín và ma túy"
+  },
+  {
+    "question": "Nguyễn Hoàng Phi (DJ) trong vụ án Hữu Tín bị tuyên phạt bao nhiêu năm tù?",
+    "expected_answer": "Nguyễn Hoàng Phi bị tuyên phạt tổng cộng 13 năm 6 tháng tù về hai tội 'Tàng trữ trái phép chất ma túy' và 'Tổ chức sử dụng trái phép chất ma túy'.",
+    "expected_context": "Báo chí về Hữu Tín và Nguyễn Hoàng Phi"
+  },
+  {
+    "question": "Ca sĩ Chu Bin bị tạm giữ hình sự ở địa phương nào và vì hành vi gì?",
+    "expected_answer": "Ca sĩ Chu Bin (Chu Đăng Thanh) bị tạm giữ hình sự tại Hải Phòng để điều tra về hành vi tổ chức sử dụng trái phép chất ma túy.",
+    "expected_context": "Báo chí về Chu Bin và ma túy"
+  },
+  {
+    "question": "Quy trình lập hồ sơ đề nghị áp dụng biện pháp cai nghiện bắt buộc gồm những bước nào?",
+    "expected_answer": "Chủ tịch UBND cấp xã lập hồ sơ đề nghị. Trong thời hạn 05 ngày làm việc kể từ ngày nhận đủ hồ sơ, Trưởng phòng LĐ-TB&XH cấp huyện kiểm tra và chuyển hồ sơ cho Tòa án nhân dân cấp huyện quyết định.",
+    "expected_context": "Nghị định 105/2021/NĐ-CP, Chương III"
+  },
+  {
+    "question": "Cơ quan chuyên trách phòng chống tội phạm ma túy bao gồm các cơ quan nào?",
+    "expected_answer": "Bao gồm cơ quan chuyên trách thuộc Công an nhân dân, Bộ đội Biên phòng, Cảnh sát biển Việt Nam và Hải quan.",
+    "expected_context": "Luật Phòng chống ma túy 2021, Điều 11"
+  },
+  {
+    "question": "Nghị định 28/2026/NĐ-CP quy định những danh mục chất ma túy và tiền chất nào?",
+    "expected_answer": "Danh mục I (cấm tuyệt đối), Danh mục II (sử dụng hạn chế), Danh mục III (hướng thần được sử dụng), và Danh mục IV (tiền chất thiết yếu, tiền chất hóa chất dung môi).",
+    "expected_context": "Nghị định 28/2026/NĐ-CP, Điều 1"
+  },
+  {
+    "question": "Nghị định 28/2026/NĐ-CP quy định thời hạn áp dụng quản lý đối với chất Carisoprodol và Etomidate từ khi nào?",
+    "expected_answer": "Các tổ chức, cá nhân sản xuất, kinh doanh hợp pháp Carisoprodol, Etomidate thực hiện quy định về quản lý chất ma túy kể từ ngày 01 tháng 6 năm 2026.",
+    "expected_context": "Nghị định 28/2026/NĐ-CP, Điều 3"
+  },
+  {
+    "question": "Tiền chất 1,4-Butanediol phải thực hiện quản lý theo quy định trước thời điểm nào theo Nghị định 28/2026?",
+    "expected_answer": "Các tổ chức, cá nhân sản xuất, kinh doanh hợp pháp 1,4-Butanediol phải thực hiện quy định quản lý tiền chất trước ngày 31 tháng 12 năm 2026.",
+    "expected_context": "Nghị định 28/2026/NĐ-CP, Điều 3"
+  },
+  {
+    "question": "Vụ án Chi Dân và Andrea Aybar liên quan đến chuyên án ma túy nào của Công an TP.HCM?",
+    "expected_answer": "Liên quan đến chuyên án VN10 mở rộng điều tra từ vụ 4 nữ tiếp viên hàng không vận chuyển ma túy từ Pháp về Việt Nam.",
+    "expected_context": "Báo chí về chuyên án VN10"
+  }
+]
