@@ -1,17 +1,77 @@
 [
   {
-    "question": "Hình phạt cho tội tàng trữ trái phép chất ma tuý theo Điều 249 Bộ luật Hình sự?",
+    "question": "Hình phạt cho tội tàng trữ trái phép chất ma tuý theo Điều 249 Bộ luật Hình sự là gì?",
     "expected_answer": "Phạt tù từ 1 đến 5 năm đối với trường hợp tàng trữ từ 1g đến dưới 5g heroin hoặc cocaine, hoặc chất ma tuý khác với khối lượng tương đương.",
     "expected_context": "Bộ luật Hình sự 2015, Điều 249"
   },
   {
-    "question": "Luật Phòng chống ma tuý 2021 quy định những hình thức cai nghiện nào?",
-    "expected_answer": "Cai nghiện tự nguyện tại gia đình, cai nghiện tự nguyện tại cộng đồng, cai nghiện tự nguyện tại cơ sở cai nghiện, và cai nghiện bắt buộc tại cơ sở cai nghiện.",
-    "expected_context": "Luật Phòng chống ma tuý 2021, Chương V"
+    "question": "Quy trình lập hồ sơ đề nghị áp dụng biện pháp cai nghiện bắt buộc gồm những bước nào theo Nghị định 105/2021/NĐ-CP?",
+    "expected_answer": "Chủ tịch UBND cấp xã lập hồ sơ đề nghị. Trong thời hạn 05 ngày làm việc kể từ ngày nhận đủ hồ sơ, Trưởng phòng LĐ-TB&XH cấp huyện kiểm tra và chuyển hồ sơ cho Tòa án nhân dân cấp huyện quyết định.",
+    "expected_context": "Nghị định 105/2021/NĐ-CP, Chương III"
   },
   {
-    "question": "Danh mục các chất ma tuý thuộc nhóm I theo quy định pháp luật Việt Nam gồm những chất nào?",
-    "expected_answer": "Nhóm I gồm các chất ma tuý tuyệt đối cấm sử dụng trong y học và đời sống, bao gồm heroin, cocaine, methamphetamine, MDMA (ecstasy), cannabis (cần sa), và các chất tương tự.",
-    "expected_context": "Nghị định 57/2022/NĐ-CP, Phụ lục I"
+    "question": "Nghị định 28/2026/NĐ-CP quy định thời hạn áp dụng quản lý đối với chất Carisoprodol và Etomidate từ khi nào?",
+    "expected_answer": "Các tổ chức, cá nhân sản xuất, kinh doanh hợp pháp Carisoprodol, Etomidate thực hiện quy định về quản lý chất ma túy kể từ ngày 01 tháng 6 năm 2026.",
+    "expected_context": "Nghị định 28/2026/NĐ-CP, Điều 3"
+  },
+  {
+    "question": "Người mẫu An Tây (Andrea Aybar) bị khởi tố về những tội danh nào và bị bắt giữ ở căn hộ thuộc địa bàn nào?",
+    "expected_answer": "Người mẫu An Tây bị khởi tố về hai tội danh: 'Tàng trữ trái phép chất ma túy' và 'Tổ chức sử dụng trái phép chất ma túy'. Cô bị bắt giữ tại một căn hộ chung cư ở thành phố Thủ Đức.",
+    "expected_context": "Báo chí về người mẫu An Tây và ma túy"
+  },
+  {
+    "question": "Diễn viên hài Hữu Tín bị tuyên phạt bao nhiêu năm tù và về tội gì theo phán quyết sơ thẩm ngày 28/4/2023?",
+    "expected_answer": "Trần Hữu Tín bị tuyên phạt mức án 7 năm 6 tháng tù về tội 'Tổ chức sử dụng trái phép chất ma túy'.",
+    "expected_context": "Báo chí về Hữu Tín và ma túy"
+  },
+  {
+    "question": "Tổng hợp các hành vi phạm tội liên quan đến ma túy của ca sĩ Chi Dân và người mẫu An Tây trong chuyên án VN10?",
+    "expected_answer": "Ca sĩ Chi Dân cùng nhóm bạn góp tiền mua Ketamine và nước vui để tổ chức sử dụng tại phòng trọ của Lê Thị Triều (Tân Bình). Người mẫu An Tây nhờ Nguyễn Phước Bảo Lộc mua ma túy tổng hợp nhiều lần, chuẩn bị dụng cụ tại nhà riêng, tổ chức sử dụng cùng trợ lý Văn Anh Duy, bạn Nguyễn Phương Đông và tàng trữ cần sa tại căn hộ của mình ở Thủ Đức.",
+    "expected_context": "Báo chí về chuyên án VN10, Chi Dân, Andrea Aybar"
+  },
+  {
+    "question": "So sánh mức hình phạt tù sơ thẩm của diễn viên Hữu Tín và đồng phạm Nguyễn Hoàng Phi trong vụ án tổ chức sử dụng ma túy năm 2023?",
+    "expected_answer": "Diễn viên Hữu Tín bị tuyên án 7 năm 6 tháng tù về một tội danh là 'Tổ chức sử dụng trái phép chất ma túy'. Trong khi đó, đồng phạm Nguyễn Hoàng Phi bị phạt nặng hơn rất nhiều với tổng cộng 13 năm 6 tháng tù về hai tội danh là 'Tàng trữ trái phép chất ma túy' và 'Tổ chức sử dụng trái phép chất ma túy'.",
+    "expected_context": "Báo chí về Hữu Tín và Nguyễn Hoàng Phi"
+  },
+  {
+    "question": "Hành vi sử dụng ma túy của ca sĩ Chu Bin và ca sĩ Chi Dân khác nhau như thế nào về mặt tội danh và hình thức xử lý?",
+    "expected_answer": "Ca sĩ Chu Bin chỉ tham gia sử dụng ma túy (không tàng trữ hay đứng ra tổ chức), nên chỉ bị xử phạt vi phạm hành chính và được bảo lãnh về nhà. Trong khi đó, ca sĩ Chi Dân tham gia bàn bạc, góp tiền mua ma túy và mượn điện thoại đặt hàng nên bị khởi tố hình sự về tội danh 'Tổ chức sử dụng trái phép chất ma túy'.",
+    "expected_context": "Báo chí về ca sĩ Chu Bin và Chi Dân"
+  },
+  {
+    "question": "Hãy đối chiếu khung hình phạt của tội tàng trữ trái phép chất ma túy (Điều 249) và tội vận chuyển trái phép chất ma túy (Điều 250) đối với chất ma túy Heroine có khối lượng từ 100 gam trở lên?",
+    "expected_answer": "Đối với khối lượng Heroine từ 100 gam trở lên, tội tàng trữ trái phép chất ma túy (Điều 249) có khung hình phạt là tù 15 năm đến 20 năm hoặc tù chung thân. Trong khi đó, tội vận chuyển trái phép chất ma túy (Điều 250) có hình phạt nghiêm khắc hơn nhiều là tù 20 năm, tù chung thân hoặc tử hình.",
+    "expected_context": "Bộ luật Hình sự 2015, Điều 249 và Điều 250"
+  },
+  {
+    "question": "Tổng hợp các mốc thời gian quy định bắt buộc quản lý đối với Carisoprodol, Etomidate và tiền chất 1,4-Butanediol theo Nghị định 28/2026/NĐ-CP?",
+    "expected_answer": "Theo Nghị định 28/2026/NĐ-CP, việc quản lý đối với các chất ma túy Carisoprodol và Etomidate bắt đầu có hiệu lực kể từ ngày 01 tháng 6 năm 2026. Đối với tiền chất 1,4-Butanediol, các tổ chức và cá nhân sản xuất, kinh doanh hợp pháp phải thực hiện quy định quản lý trước ngày 31 tháng 12 năm 2026.",
+    "expected_context": "Nghị định 28/2026/NĐ-CP, Điều 3"
+  },
+  {
+    "question": "Mức xử phạt hành chính đối với hành vi đua xe trái phép năm 2026 là bao nhiêu?",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+    "expected_context": "Out-of-domain"
+  },
+  {
+    "question": "Quy định về thời hạn đăng kiểm xe ô tô 4 chỗ mới nhất theo Luật Giao thông đường bộ?",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+    "expected_context": "Out-of-domain"
+  },
+  {
+    "question": "Ca sĩ Sơn Tùng M-TP đã cho ra mắt những MV ca nhạc nào trong năm 2025?",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+    "expected_context": "Out-of-domain"
+  },
+  {
+    "question": "Chuyên án VN10 được đặt tên theo chuyến bay của hãng hàng không nào và danh tính của 4 nữ tiếp viên hàng không bị tạm giữ là gì?",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+    "expected_context": "Out-of-domain"
+  },
+  {
+    "question": "Thủ tục xin cấp phép xây dựng nhà ở riêng lẻ tại đô thị gồm những giấy tờ gì?",
+    "expected_answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+    "expected_context": "Out-of-domain"
   }
 ]
