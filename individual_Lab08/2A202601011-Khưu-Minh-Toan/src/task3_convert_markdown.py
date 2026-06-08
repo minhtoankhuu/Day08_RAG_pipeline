@@ -33,12 +33,51 @@ def convert_legal_docs():
     for filepath in legal_dir.iterdir():
         if filepath.suffix.lower() in (".pdf", ".docx", ".doc"):
             print(f"Converting: {filepath.name}")
-            # TODO: Convert và lưu file
-            # result = md.convert(str(filepath))
-            # output_path = output_dir / f"{filepath.stem}.md"
-            # output_path.write_text(result.text_content, encoding="utf-8")
-            # print(f"  ✓ Saved: {output_path}")
-            raise NotImplementedError("Implement convert_legal_docs")
+            try:
+                result = md.convert(str(filepath))
+                output_path = output_dir / f"{filepath.stem}.md"
+                output_path.write_text(result.text_content, encoding="utf-8")
+                print(f"  [SUCCESS] Saved: {output_path.name}")
+            except Exception as e:
+                print(f"  [ERROR] Failed to convert {filepath.name}: {e}")
+
+
+def clean_news_content(text: str) -> str:
+    """Loại bỏ header navigation và footer junk khỏi bài báo tin tức."""
+    lines = text.splitlines()
+    start_idx = 0
+    for i, line in enumerate(lines):
+        if line.strip().startswith("#"):
+            start_idx = i
+            break
+            
+    lines = lines[start_idx:]
+    cleaned_lines = []
+    
+    for line in lines:
+        stripped = line.strip()
+        # Dừng thu thập khi gặp các phần social/footer nhiễu
+        if any(marker in stripped for marker in [
+            "[ Facebook ](https://www.facebook.com/sharer",
+            "[ Chia sẻ ](javascript:",
+            "[ Zalo ](javascript:",
+            "CHIA SẺ",
+            "Tặng sao",
+            "Chuyển sao tặng cho thành viên",
+            "Bình luận (",
+            "Ý kiến của bạn sẽ được biên tập",
+            "#### Khám phá thêm chủ đề",
+            "![footer__logo]",
+            "© Copyright",
+            "Hotline",
+            "Email:",
+            "Tuyển tập tin liên quan",
+            "Đăng ký email - Mở cổng thông tin"
+        ]):
+            break
+        cleaned_lines.append(line)
+        
+    return "\n".join(cleaned_lines).strip()
 
 
 def convert_news_articles():
@@ -50,19 +89,23 @@ def convert_news_articles():
     for filepath in news_dir.iterdir():
         if filepath.suffix.lower() == ".json":
             print(f"Converting: {filepath.name}")
-            # TODO: Đọc JSON, extract content_markdown, lưu thành .md
-            # data = json.loads(filepath.read_text(encoding="utf-8"))
-            # output_path = output_dir / f"{filepath.stem}.md"
-            #
-            # # Thêm metadata header
-            # header = f"# {data.get('title', 'Unknown')}\n\n"
-            # header += f"**Source:** {data.get('url', 'N/A')}\n"
-            # header += f"**Crawled:** {data.get('date_crawled', 'N/A')}\n\n---\n\n"
-            #
-            # content = header + data.get("content_markdown", "")
-            # output_path.write_text(content, encoding="utf-8")
-            # print(f"  ✓ Saved: {output_path}")
-            raise NotImplementedError("Implement convert_news_articles")
+            try:
+                data = json.loads(filepath.read_text(encoding="utf-8"))
+                output_path = output_dir / f"{filepath.stem}.md"
+
+                # Làm sạch nội dung bài báo
+                cleaned_body = clean_news_content(data.get("content_markdown", ""))
+
+                # Thêm metadata header (không lặp lại tiêu đề dạng # nữa)
+                header = f"**Title:** {data.get('title', 'Unknown')}\n"
+                header += f"**Source:** {data.get('url', 'N/A')}\n"
+                header += f"**Crawled:** {data.get('date_crawled', 'N/A')}\n\n---\n\n"
+
+                content = header + cleaned_body
+                output_path.write_text(content, encoding="utf-8")
+                print(f"  [SUCCESS] Saved: {output_path.name}")
+            except Exception as e:
+                print(f"  [ERROR] Failed to convert {filepath.name}: {e}")
 
 
 def convert_all():
